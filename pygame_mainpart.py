@@ -16,7 +16,6 @@ input_pos = (100, 500)
 reginal_line_pos = (100, 100)
 # 待添加：音乐初始化部分
 
-
 with open("text.txt") as f:  # 读取模板文本文件，将其转化为一排为单元的列表
     read_data_in_line = []
     for line in f:
@@ -107,12 +106,12 @@ while True:
             if event.unicode != "":  # 对字符输入进行处理
                 line_in = line_in + key_in
                 draw_button_line(line_in)
-                if (event.unicode <= 'z' and event.unicode >= 'a') or (
-                        event.unicode <= 'Z' and event.unicode >= 'A') or (
-                        event.unicode <= '9' and event.unicode >= '0'):
+                if ('z' >= event.unicode >= 'a') or (
+                        'Z' >= event.unicode >= 'A') or (
+                        '9' >= event.unicode >= '0'):
                     td.count_char += 1
                 if td.row_order < len(read_data_in_line) and td.count_order < len(read_data_in_line[td.row_order]):
-                    if (event.unicode == read_data_in_line[td.row_order][td.count_order]):
+                    if event.unicode == read_data_in_line[td.row_order][td.count_order]:
                         td.count_correct += 1
                     else:
                         td.count_error += 1
