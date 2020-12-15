@@ -29,7 +29,7 @@ def draw_button_line(a):
     texlmage = myfont.render(a, True, (0, 0, 0))
     ul.draw_up_line(read_data_in_line)
     screen.blit(texlmage, input_pos)
-    print(line_in)
+   # print(line_in)
 
 
 
@@ -53,19 +53,30 @@ class Upper_line:
             pass
 
 class Typing_data:
-    count_words = 0
+    count_char = 0
     count_time = 0
     count_correct = 0
     count_error = 0
+    count_order = 0
+    row_order = 0
     def get_WPM(self):
-        return self.count_time / self.count_words
+        return self.count_time / self.count_char / 5
     def get_correct_rate(self):
-        return self.count_correct / self.count_words
+        return self.count_correct / self.count_char
+    def get_backspace(self):
+        if self.count_order > 0:
+            self.count_order -= 1
+            self.count_char -= 1
+            self.count_error -= 1
+        elif self.row_order > 0:
+            self.row_order -= 1
+        else:
+            pass
 
 
 
 ul = Upper_line()
-
+td = Typing_data()
 
 
 
@@ -79,17 +90,31 @@ while True:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             key_in = event.unicode
-            if event.unicode != "":
+            if event.unicode != "":                      #对字符输入进行处理
                 line_in = line_in + key_in
+
                 draw_button_line(line_in)
-            elif event.key == 8:
+                if (event.unicode <= 'z' and event.unicode >= 'a') or (event.unicode <= 'Z' and event.unicode >= 'A') or (event.unicode <= '9' and event.unicode >= '0'):
+                    td.count_char += 1
+                if td.row_order < len(read_data_in_line) and td.count_order < len(read_data_in_line[0]):
+                    if(event.unicode == read_data_in_line[td.row_order][td.count_order]):
+                        td.count_correct += 1
+                    else:
+                        td.count_error += 1
+                td.count_order += 1
+            elif event.key == 8:                           # 对backspace进行处理
                 line_in = line_in[0:-1]
+                td.get_backspace()
                 draw_button_line(line_in)
-            elif event.key == 13:
+            elif event.key == 13:                          # 对回车进行处理
                 ul.counter += 1
                 draw_button_line(line_in)
+                line_in = ""
+                draw_button_line(line_in)
+                td.row_order += 1
+                td.count_order = 0
 
-
+    print(td.count_correct,td.count_char,td.count_error)
 
 
     pygame.display.update()
