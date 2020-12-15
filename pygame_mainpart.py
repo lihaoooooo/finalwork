@@ -38,7 +38,7 @@ while True:
                 line_in = line_in + key_in
                 texlmage = myfont.render(line_in, True, (0, 0, 0))
                 screen.blit(texlmage, input_pos)
-                print(line_in)
+             #   print(line_in)
 
     screen.blit(background, (0, 0))
     pygame.display.update()
