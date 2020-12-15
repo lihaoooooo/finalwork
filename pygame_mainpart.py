@@ -26,6 +26,7 @@ line_in = ""
 
 # 游戏主体
 while True:
+
     key_in = ""
     refresh_key = 0
     for event in pygame.event.get():
@@ -34,12 +35,20 @@ while True:
         elif event.type == pygame.KEYDOWN:
             key_in = event.unicode
             refresh_key = 1
-            if key_in != "":
+            if event.unicode != "":
                 line_in = line_in + key_in
                 texlmage = myfont.render(line_in, True, (0, 0, 0))
+                screen.blit(background, (0, 0))
+                screen.blit(texlmage, input_pos)
+                print(line_in)
+            elif event.key == 8:
+                line_in = line_in[0:-1]
+                texlmage = myfont.render(line_in, True, (0, 0, 0))
+                screen.blit(background, (0, 0))
                 screen.blit(texlmage, input_pos)
                 print(line_in)
 
-    screen.blit(background, (0, 0))
+
+
     pygame.display.update()
     fclock.tick(fps)

@@ -10,5 +10,5 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            print(event.key)
+            print(type(event.key),event.key)
     pygame.display.update(())
