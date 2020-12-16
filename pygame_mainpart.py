@@ -1,29 +1,23 @@
 import sys
 import pygame
-
 # 初始化
-
 pygame.init()
 width, height = 1000, 667
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("coding_practice")
 background = pygame.image.load("background.jpg").convert()
-bacrground_rect = background.get_rect()
+stickman = pygame.image.load("stickman.gif").convert()
 fps = 30
 fclock = pygame.time.Clock()
 myfont = pygame.font.Font(None, 60)  # 创建字体
 input_pos = (100, 500)
 reginal_line_pos = (100, 100)
-
-pygame.event.get()
-pygame.display.update()
+man_pos = [x,y] = [100,400]
 # 待添加：音乐初始化部分
-
 with open("text.txt") as f:  # 读取模板文本文件，将其转化为一排为单元的列表
     read_data_in_line = []
     for line in f:
         read_data_in_line.append(line)
-
 line_in = ""
 
 
@@ -33,14 +27,12 @@ def draw_button_line(a):
     screen.blit(texlmage, input_pos)
 
 
-# print(line_in)
-
-
 class Upper_line:
     counter = 0
 
     def draw_up_line(self, text):
         screen.blit(background, (0, 0))
+        screen.blit(stickman,man_pos)
         if self.counter <= len(text) - 3:
             text_1 = myfont.render(text[self.counter], True, (0, 0, 0))
             text_2 = myfont.render(text[self.counter + 1], True, (0, 0, 0))
@@ -103,7 +95,6 @@ td = Typing_data()
 
 # 游戏主体
 while True:
-
     key_in = ""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -139,9 +130,8 @@ while True:
                 td.count_order = 0
             if td.row_order >= len(read_data_in_line):
                 td.draw_result()
-
-    print(td.count_correct, td.count_char, td.count_error, td.count_time / 30)
-
+    man_pos[0] = 100 + td.row_order / len(read_data_in_line) * 500
+#    print(td.count_correct, td.count_char, td.count_error, td.count_time / 30)
     pygame.display.update()
     fclock.tick(fps)
     td.count_time += 1
