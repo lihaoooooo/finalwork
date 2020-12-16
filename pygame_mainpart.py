@@ -73,9 +73,13 @@ class Typing_data:
 
     def get_backspace(self):
         if self.count_order > 0:
+            if td.row_order < len(read_data_in_line) and td.count_order < len(read_data_in_line[td.row_order]):
+                if line_in[self.count_order - 1] == read_data_in_line[self.row_order][self.count_order - 1]:
+                    self.count_correct -= 1
+                else:
+                    td.count_error -= 1
             self.count_order -= 1
             self.count_char -= 1
-            self.count_error -= 1
         elif self.row_order > 0:
             self.row_order -= 1
         else:
@@ -104,6 +108,7 @@ while True:
         elif event.type == pygame.KEYDOWN:
             key_in = event.unicode
             if event.unicode != "":  # 对字符输入进行处理
+                last_key = key_in
                 line_in = line_in + key_in
                 draw_button_line(line_in)
                 if ('z' >= event.unicode >= 'a') or (
@@ -117,8 +122,8 @@ while True:
                         td.count_error += 1
                 td.count_order += 1
             elif event.key == 8:  # 对backspace进行处理
-                line_in = line_in[0:-1]
                 td.get_backspace()
+                line_in = line_in[0:-1]
                 if td.count_order == 0 and ul.counter > 0:
                     ul.counter -= 1
                 draw_button_line(line_in)
