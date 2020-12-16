@@ -1,9 +1,9 @@
-# finalwork:typefriend
+# finalwork:keyfriend
 lihaoooooo's python class work
 
 这是“python编程与智能车”课程期末作业项目，由lihaooo开发。
 
-typefriend是一个可以自己导入训练文本的打字训练小软件，文本训练完毕后，可以显示WPM(words per minutes)、准确率、用时等数据。
+keyfriend是一个可以自己导入训练文本的打字训练小软件，文本训练完毕后，可以显示WPM(words per minutes)、准确率、用时等数据。
 
 想试着运行它的话，你可以 
 
