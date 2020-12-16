@@ -119,7 +119,7 @@ while True:
             elif event.key == 8:  # 对backspace进行处理
                 line_in = line_in[0:-1]
                 td.get_backspace()
-                if td.count_order == 0:
+                if td.count_order == 0 and ul.counter > 0:
                     ul.counter -= 1
                 draw_button_line(line_in)
             elif event.key == 13:  # 对回车进行处理
