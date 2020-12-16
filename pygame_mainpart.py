@@ -32,7 +32,7 @@ class Upper_line:
 
     def draw_up_line(self, text):
         screen.blit(background, (0, 0))
-        screen.blit(stickman,man_pos)
+
         if self.counter <= len(text) - 3:
             text_1 = myfont.render(text[self.counter], True, (0, 0, 0))
             text_2 = myfont.render(text[self.counter + 1], True, (0, 0, 0))
@@ -130,7 +130,9 @@ while True:
                 td.count_order = 0
             if td.row_order >= len(read_data_in_line):
                 td.draw_result()
-    man_pos[0] = 100 + td.row_order / len(read_data_in_line) * 500
+    if td.get_correct_rate() >= 0.9:
+      man_pos[0] = 100 + td.row_order / len(read_data_in_line) * 500
+    screen.blit(stickman, man_pos)
 #    print(td.count_correct, td.count_char, td.count_error, td.count_time / 30)
     pygame.display.update()
     fclock.tick(fps)
