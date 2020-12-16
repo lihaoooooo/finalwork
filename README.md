@@ -5,5 +5,15 @@ lihaoooooo's python class work
 
 typefriend是一个可以自己导入训练文本的打字训练小软件，文本训练完毕后，可以显示WPM(words per minutes)、准确率、用时等数据。
 
-若要使用，请确保安装python3后 pip安装pygame， 将仓库中的pygame.py background.jpg text.txt文件下载，放在同一目录下进行运行。
+想试着运行它的话，你可以 
 
+1.安装一个pythonIDE(推荐pycharm）  
+
+2.在你的IDE的terminal上输入 pip install pygame  来安装pygame库
+
+3.将本仓库中的pygame_mainpart.py  background.jpg stickman.gif text.py下载下来，放到同一个文件夹里面
+
+4.用你的IDE打开pygame_mainpart.py 执行它
+
+这是作者第一次使用GitHub，也是第一次写一个完整的程序，欢迎提出任何建议意见~~~
+ 
