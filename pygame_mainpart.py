@@ -14,6 +14,9 @@ fclock = pygame.time.Clock()
 myfont = pygame.font.Font(None, 60)  # 创建字体
 input_pos = (100, 500)
 reginal_line_pos = (100, 100)
+
+pygame.event.get()
+pygame.display.update()
 # 待添加：音乐初始化部分
 
 with open("text.txt") as f:  # 读取模板文本文件，将其转化为一排为单元的列表
